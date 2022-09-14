@@ -152,6 +152,7 @@ app.get('/contact', (req, res) => {
 app.get('/contact/edit/:name',async(req, res) => {
     const name = req.params.name
     const contact = await db.findOne(name)
+    console.log(contact);
     res.render("edit",{
         layout:'layout/edit',
         contact: contact.rows[0], 

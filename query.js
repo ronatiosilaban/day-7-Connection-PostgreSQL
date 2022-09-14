@@ -5,10 +5,10 @@ const findAll = () => {
 }
 
 const findOne = (name) =>{
-    const lowName = name.toLowerCase()
-    return pool.query(`SELECT lower(name) AS name, "number", email
-	FROM public.contacts where name = '${lowName}' `)
+    return pool.query(`SELECT lower(name)  AS name, "number", email
+	FROM public.contacts where name = '${name}' `)
 }
+
 
 const addData = (datass) => {
     return pool.query(`INSERT INTO contacts VALUES('${datass.name}','${datass.number}','${datass.email}') RETURNING *`)
@@ -20,8 +20,7 @@ const deleteData = (name) => {
 }
 
 const UpdateData = (oldname, name, number, email)=>{
-    const lowName = name.toLowerCase()
-    return pool.query(`UPDATE contacts SET name='${lowName}', number='${number}', email='${email}'
+    return pool.query(`UPDATE contacts SET name='${name}', number='${number}', email='${email}'
 	WHERE name = '${oldname}'`)
 }
 
